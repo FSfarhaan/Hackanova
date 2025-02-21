@@ -15,30 +15,7 @@ const LandingPage = () => {
           </span>
         </div>
         <div className="flex items-center space-x-8">
-          <button 
-            onClick={() => navigate('/')} 
-            className="hover:text-blue-600 transition-all duration-300 ease-in-out"
-          >
-            Home
-          </button>
-          <button 
-            onClick={() => navigate('/about')} 
-            className="hover:text-blue-600 transition-all duration-300 ease-in-out"
-          >
-            About
-          </button>
-          <button 
-            onClick={() => navigate('/projects')} 
-            className="hover:text-blue-600 transition-all duration-300 ease-in-out"
-          >
-            Projects
-          </button>
-          <button 
-            onClick={() => navigate('/services')} 
-            className="hover:text-blue-600 transition-all duration-300 ease-in-out"
-          >
-            Services
-          </button>
+         
           <button 
             onClick={() => navigate('/contact')}
             className="px-4 py-2 rounded-full border border-gray-300 hover:bg-blue-500 hover:text-white hover:border-transparent transition-all duration-300 ease-in-out"
@@ -51,7 +28,7 @@ const LandingPage = () => {
       {/* Main Content */}
       <div className="container mx-auto px-6 pt-24 pb-12 flex items-center min-h-screen">
         <div className="w-1/2 pr-12">
-          <h1 className="text-6xl font-bold leading-tight mb-6">
+          <h1 className="text-8xl font-bold leading-tight mb-8">
             <span className="block transition-transform duration-300 hover:translate-x-2">
               Your Safety,
             </span>
@@ -60,20 +37,20 @@ const LandingPage = () => {
             </span>
           </h1>
           
-          <p className="text-gray-600 mb-8 max-w-md">
-            We revolutionize wind turbines to generate reliable, efficient, and eco-friendly energy for a greener tomorrow.
+          <p className="text-gray-600 mb-12 text-4xl text-justify">
+          We ensure your security with real-time location sharing, safe route planning, and emergency assistance.
           </p>
           
-          <div className="flex items-center space-x-8">
+          <div className="flex items-center  space-x-8">
             <button 
               onClick={() => navigate("/feelsafe")} 
-              className="px-4 py-2 rounded-full bg-blue-500 text-white hover:bg-blue-600 transition-all duration-300"
+              className="px-6 py-4 rounded-full bg-blue-500 text-white hover:bg-blue-600 transition-all duration-300 mb-8 text-2xl"
             >
               FeelSafe
             </button>
             <button 
               onClick={() => navigate("/sos")} 
-              className="px-4 py-2 rounded-full bg-red-500 text-white hover:bg-red-600 transition-all duration-300"
+              className="px-6 py-4 rounded-full bg-red-500 text-white hover:bg-red-600 transition-all duration-300 mb-8 text-2xl"
             >
               Send Emergency SOS
             </button>
