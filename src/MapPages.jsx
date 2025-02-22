@@ -27,7 +27,9 @@ const MapsTest = () => {
         </div>
 
         <div className="absolute p-8 top-0 right-0 w-1/3 h-screen z-10">
-            <div className="bg-white h-full w-full rounded-lg shadow border-2"></div>
+            <div className="bg-white h-full w-full rounded-lg shadow border-2">
+              
+            </div>
         </div>
     </div>
   );

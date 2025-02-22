@@ -161,12 +161,12 @@ const EmergencySOS = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-red-50 to-white">
-      <header className="bg-red-600 text-white">
+      <header className="bg-white-600 text-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 flex justify-between items-center">
           <h1 className="text-3xl font-bold">Emergency SOS</h1>
           <button
             onClick={() => window.history.back()}
-            className="bg-white text-red-600 px-6 py-2 rounded-lg hover:bg-gray-100 transition"
+            className="bg-white text-white-600 px-6 py-2 rounded-lg hover:bg-gray-100 transition"
           >
             Go Back
           </button>

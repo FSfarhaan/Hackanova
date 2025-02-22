@@ -60,35 +60,36 @@ const FeelSafe = () => {
       </header>
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 py-8 space-y-8">
-        {/* Main Action Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {/* Share Location Card */}
-          <button className="group relative flex flex-col items-center p-8 bg-white rounded-2xl hover:bg-blue-50 transition-all duration-300 border-2 border-transparent hover:border-blue-200 shadow-lg hover:shadow-xl">
-            <div className="absolute top-4 right-4 bg-blue-100 text-blue-600 p-2 rounded-full">
-              <MapPin className="w-5 h-5" />
-            </div>
-            <div className="w-24 h-24 bg-blue-100 rounded-full flex items-center justify-center mb-4">
-              <Navigation className="w-12 h-12 text-blue-600" />
-            </div>
-            <h2 className="text-xl font-semibold mt-4 text-gray-900">Check Current Location</h2>
-            <p className="text-gray-600 text-center mt-2">Share your real-time location with trusted contacts</p>
-          </button>
+       {/* Main Action Cards */}
+<div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+  {/* Share Location Card */}
+  <button className="group relative flex flex-col items-center p-8 bg-white rounded-2xl hover:bg-blue-50 transition-all duration-300 border-2 border-transparent hover:border-blue-200 shadow-lg hover:shadow-xl">
+    <div className="absolute top-4 right-4 bg-blue-100 text-blue-600 p-2 rounded-full">
+      <MapPin className="w-5 h-5" />
+    </div>
+    <div className="w-54 h-54 rounded-lg flex items-center justify-center mb-4 overflow-hidden">
+      <img src="/sharelocation.png" alt="Current Location" className="w-full h-full object-cover" />
+    </div>
+    <h2 className="text-xl font-semibold mt-4 text-gray-900">Check Current Location</h2>
+    <p className="text-gray-600 text-center mt-2">Share your real-time location with trusted contacts</p>
+  </button>
 
-          {/* Plan Safe Travel Card */}
-          <button
-            onClick={() => setIsOpen(true)}
-            className="group relative flex flex-col items-center p-8 bg-white rounded-2xl hover:bg-green-50 transition-all duration-300 border-2 border-transparent hover:border-green-200 shadow-lg hover:shadow-xl"
-          >
-            <div className="absolute top-4 right-4 bg-green-100 text-green-600 p-2 rounded-full">
-              <Map className="w-5 h-5" />
-            </div>
-            <div className="w-24 h-24 bg-green-100 rounded-full flex items-center justify-center mb-4">
-              <Navigation className="w-12 h-12 text-green-600" />
-            </div>
-            <h2 className="text-xl font-semibold mt-4 text-gray-900">Plan Safe Travel</h2>
-            <p className="text-gray-600 text-center mt-2">Get safe route recommendations and travel tips</p>
-          </button>
-        </div>
+  {/* Plan Safe Travel Card */}
+  <button
+    onClick={() => setIsOpen(true)}
+    className="group relative flex flex-col items-center p-8 bg-white rounded-2xl hover:bg-green-50 transition-all duration-300 border-2 border-transparent hover:border-green-200 shadow-lg hover:shadow-xl"
+  >
+    <div className="absolute top-4 right-4 bg-green-100 text-green-600 p-2 rounded-full">
+      <Map className="w-5 h-5" />
+    </div>
+    <div className="w-200 h-200 rounded-lg flex items-center justify-center mb-4 overflow-hidden">
+      <img src="/image2.png" alt="Plan Safe Travel" className="w-full h-full object-cover" />
+    </div>
+    <h2 className="text-xl font-semibold mt-4 text-gray-900">Plan Safe Travel</h2>
+    <p className="text-gray-600 text-center mt-2">Get safe route recommendations and travel tips</p>
+  </button>
+</div>
+
 
         {/* Safety Features Section */}
         <section className="bg-white rounded-xl shadow-lg p-6">
@@ -115,32 +116,7 @@ const FeelSafe = () => {
           </div>
         </section>
 
-        {/* Quick Access Section */}
-        <section className="bg-white rounded-xl shadow-lg p-6">
-          <h2 className="text-xl font-semibold mb-6 flex items-center">
-            <Clock className="w-6 h-6 text-blue-600 mr-2" />
-            Quick Access
-          </h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <button className="p-6 bg-gray-50 rounded-xl hover:bg-gray-100 transition-all hover:shadow-md">
-              <Phone className="w-8 h-8 mx-auto mb-3 text-blue-600" />
-              <span className="text-sm font-medium block">Emergency Calls</span>
-            </button>
-            <button className="p-6 bg-gray-50 rounded-xl hover:bg-gray-100 transition-all hover:shadow-md">
-              <Heart className="w-8 h-8 mx-auto mb-3 text-red-600" />
-              <span className="text-sm font-medium block">Medical Help</span>
-            </button>
-            <button className="p-6 bg-gray-50 rounded-xl hover:bg-gray-100 transition-all hover:shadow-md">
-              <Users className="w-8 h-8 mx-auto mb-3 text-green-600" />
-              <span className="text-sm font-medium block">Trusted Contacts</span>
-            </button>
-            <button className="p-6 bg-gray-50 rounded-xl hover:bg-gray-100 transition-all hover:shadow-md">
-              <Shield className="w-8 h-8 mx-auto mb-3 text-purple-600" />
-              <span className="text-sm font-medium block">Safety Tips</span>
-            </button>
-          </div>
-        </section>
-
+       
         {/* Route Planning Modal */}
         {isOpen && (
           <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50 z-50">
