@@ -1,31 +1,89 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MapPin, Navigation, Phone, Bell, Shield, Users, Clock, AlertTriangle, Heart, Map, X } from 'lucide-react';
+import axios from 'axios';
 
 const FeelSafe = () => {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [start, setStart] = useState('');
   const [end, setEnd] = useState('');
-  const [selectedContacts, setSelectedContacts] = useState([
-    { id: 1, name: 'Emergency Contact 1', phone: '+1234567890' },
-    { id: 2, name: 'Emergency Contact 2', phone: '+1234567891' }
-  ]);
 
-  const [safeRoutes] = useState([
-    { id: 1, name: 'Route 1 - Via Main Street', safety: 'High', time: '15 mins' },
-    { id: 2, name: 'Route 2 - Via Park Road', safety: 'Medium', time: '12 mins' }
-  ]);
+  const [location, setLocation] = useState({ latitude: null, longitude: null });
+  const [city, setCity] = useState("");
 
   const handleGoBack = () => {
     navigate(-1);
   };
 
+  const getCoordinates = async (place) => {
+    try {
+      const response = await axios.get(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(place)}`);
+      const data = await response.data;
+      if (data.length > 0) {
+        return {
+          latitude: parseFloat(data[0].lat),
+          longitude: parseFloat(data[0].lon),
+        };
+      } else {
+        console.error("Location not found:", place);
+        return null;
+      }
+    } catch (error) {
+      console.error("Error fetching coordinates:", error);
+      return null;
+    }
+  };
+
+  const convertPlacesToCoords = async (start, end) => {
+    console.log('Planning route from', start, 'to', end);
+  
+    const startCoords = await getCoordinates(start);
+    const endCoords = await getCoordinates(end);
+  
+    if (startCoords && endCoords) {
+      console.log(`Start Coordinates: Lat ${startCoords.latitude}, Lon ${startCoords.longitude}`);
+      console.log(`End Coordinates: Lat ${endCoords.latitude}, Lon ${endCoords.longitude}`);
+
+      localStorage.setItem("source", JSON.stringify({lat: startCoords.latitude, lng: startCoords.longitude}))
+      localStorage.setItem("dest", JSON.stringify({lat: endCoords.latitude, lng: endCoords.longitude}))
+
+      navigate('/maps');
+      
+    } else {
+      console.log("Could not retrieve coordinates for one or both locations.");
+    }
+  };
+
   const handleSubmit = () => {
     // Handle route planning logic here
     console.log('Planning route from', start, 'to', end);
+    convertPlacesToCoords(start, end);
     setIsOpen(false);
   };
+
+  const handleCurrentLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+          setLocation({ latitude, longitude });
+
+          // Fetch city name from Nominatim API
+          fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`)
+            .then((response) => response.json())
+            .then((data) => {
+              setCity(data.address.city || data.address.town || data.address.village || "Unknown Location");
+            })
+            .catch((error) => console.error("Error fetching city:", error));
+        },
+        (error) => console.error("Error getting location:", error),
+        { enableHighAccuracy: true }
+      );
+    } else {
+      console.error("Geolocation is not supported by this browser.");
+    }
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white pb-8">
@@ -63,7 +121,7 @@ const FeelSafe = () => {
         {/* Main Action Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Share Location Card */}
-          <button className="group relative flex flex-col items-center p-8 bg-white rounded-2xl hover:bg-blue-50 transition-all duration-300 border-2 border-transparent hover:border-blue-200 shadow-lg hover:shadow-xl">
+          <button onClick={handleCurrentLocation} className="group relative flex flex-col items-center p-8 bg-white rounded-2xl hover:bg-blue-50 transition-all duration-300 border-2 border-transparent hover:border-blue-200 shadow-lg hover:shadow-xl">
             <div className="absolute top-4 right-4 bg-blue-100 text-blue-600 p-2 rounded-full">
               <MapPin className="w-5 h-5" />
             </div>

@@ -17,7 +17,7 @@ const HeatmapLayer = ({ heatmapData }) => {
     const heatLayer = L.heatLayer(heatPoints, {
       radius: 25,  // Adjust heat intensity radius
       blur: 30,
-      maxZoom: 10,
+      maxZoom: 0,
       gradient: {
         0.2: "blue",   // Low intensity (safe areas)
         0.4: "green",  // Moderate intensity

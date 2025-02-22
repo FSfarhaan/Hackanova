@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LandingPage from "./LandingPage";
 import FeelSafe from "./FeelSafe";
 import SendEmergencySOS from "./SendEmergencySOS";
-import MapsTest from "./MapPages"
+import MapsTest from "./MapPage"
 
 const App = () => {
   return (
